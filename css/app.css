@@ -1,0 +1,29 @@
+.login {
+    max-width: 500px;
+    margin-top: 150px;
+    background: #f0f4f2;
+    padding: 40px;
+}
+
+.table_width {
+    width: 100%;
+}
+
+.botao {
+    margin: 0;
+    width: 100%;
+}
+.botao{
+    background: black;
+}
+.botao:hover{
+    background: navy;
+}
+.no_space {
+    padding: 0;
+}
+
+#center {
+    margin-top: 50px;
+    margin-left: 399px;
+}
