@@ -9,11 +9,11 @@
         <td></td>
     </tr>
     <?php
-    if($_post["editar"]){
-        editar2($_post["editar"]);
+    if($_POST["editar"]){
+        editar2($_POST["editar"]);
     }
-    if(isset($_post["name"]) and isset($_post["valor"]) and isset($_post["qtd"]) and isset($_post["validade"]) and isset($_post["validade"])){
-        editar($_post["nome"], $_post["valor"], $_post["qtd"], $_post["validade"], $_post["editar"]);
+    if(isset($_POST["name"]) and isset($_post["valor"]) and isset($_post["qtd"]) and isset($_post["validade"]) and isset($_post["validade"])){
+        editar($_POST["nome"], $_POST["valor"], $_POST["qtd"], $_POST["validade"], $_POST["editar"]);
     }
     ?>
 </table>
