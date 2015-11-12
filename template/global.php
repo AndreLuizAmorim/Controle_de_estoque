@@ -50,6 +50,7 @@ function ver(){
                 <td>
                     <form action="editar.php">
                         <input type="submit" class="tiny button botao" value="editar" />
+                        <input type="hidden" name="editar" value="<?php echo $linha["idcadastro"]; ?>" />
                     </form>
                 </td>
             </tr>
@@ -86,4 +87,37 @@ function ver(){
     }
 
     return "Login ou senha inválidos!";
+}
+
+function editar($nome, $valor, $qtd, $validade, $id) {
+    $sql = "UPDATE `cadastro` SET `nome`=:nome,`valor`=:valor,`qtd`=:qtd,`validade`=:validade WHERE idcadastro=:id;";
+    $prepare = conexao() ->prepare($sql);
+    $prepare->bindValue(":nome", $nome);
+    $prepare->bindValue(":valor", $valor);
+    $prepare->bindValue(":qtd", $qtd);
+    $prepare->bindValue(":validade", $validade);
+    $prepare->bindValue(":id", $id);
+    $prepare->execute();
+}
+function editar2($id) {
+    $sql = "SELECT `idcadastro`, `nome`, `valor`, `qtd`, `validade` FROM `cadastro` WHERE `idcadastro`=:id;";
+    $prepare = conexao() ->prepare($sql);
+    $prepare->bindValue(":id", $id);
+        $prepare->execute();
+        while ($linha = $prepare->fetch(PDO::FETCH_ASSOC)){
+        ?>
+    <table id="center">
+            <tr>
+                <td><input type="text" value="<?php echo $linha["nome"]; ?>" /></td>
+                <td><input type="text" value="<?php echo $linha["valor"]; ?>" /></td>
+                <td><input type="text" value="<?php echo $linha["qtd"]; ?>" /></td>
+                <td><input type="text" value="<?php echo $linha["validade"]; ?>" /></td>
+                <td>
+                    <input type="submit" value="Finalizar" />
+                    <input type="hidden" name="botao" value="<?php echo $linha["idcadastro"]; ?>" />
+                </td>
+            </tr>
+    </table>
+        <?php
+        }
 }
