@@ -9,7 +9,7 @@
         <td></td>
     </tr>
     <?php
-    if($_POST["editar"]){
+    if(isset($_POST["editar"])){
         editar2($_POST["editar"]);
     }
     if(isset($_POST["name"]) and isset($_post["valor"]) and isset($_post["qtd"]) and isset($_post["validade"]) and isset($_post["validade"])){
