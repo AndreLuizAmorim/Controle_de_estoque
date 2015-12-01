@@ -1,6 +1,13 @@
 <?php include_once ("template/global.php"); ?>
 <?php include_once ("template/header.php"); ?>
-<table>
+    <?php  
+        if(isset($_POST["nome"]) and isset($_POST["valor"]) and isset($_POST["qtd"]) and isset($_POST["validade"]) and isset($_POST["fodase"])){
+               
+            editar($_POST["nome"], $_POST["valor"], $_POST["qtd"], $_POST["validade"], $_POST["fodase"]);
+        }
+        
+    ?>
+<table id="center">
     <tr>
         <td>nome</td>
         <td>valor</td>
@@ -8,13 +15,13 @@
         <td>validade</td>
         <td></td>
     </tr>
+
+</table>
     <?php
-    if(isset($_POST["editar"])){
-        editar2($_POST["editar"]);
-    }
-    if(isset($_POST["name"]) and isset($_post["valor"]) and isset($_post["qtd"]) and isset($_post["validade"]) and isset($_post["validade"])){
-        editar($_POST["nome"], $_POST["valor"], $_POST["qtd"], $_POST["validade"], $_POST["editar"]);
+        
+    if(isset($_GET["editar"])){
+        
+        editar2($_GET["editar"]);
     }
     ?>
-</table>
 <?php include_once ("template/footer.php"); ?>
