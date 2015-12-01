@@ -7,6 +7,7 @@
         }
         
     ?>
+
 <table id="center">
     <tr>
         <td>nome</td>
