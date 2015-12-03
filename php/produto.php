@@ -1,15 +1,23 @@
 <?php
-
-function conexao(){
-    return new PDO("mysql:host=127.0.0.1:3307;dbname=mercadin", "root", "usbw");
+if(file_exists("global.php")){
+    include_once'global.php';
+}else{
+    include_once'php/global.php';
 }
-function cadastro($nome, $valor, $qtd, $dt_val){
+
+function cadastro(){
+    if(
+        isset($_POST['nome']) and
+        isset($_POST['valor']) and
+        isset($_POST['qtd']) and
+        isset($_POST['validade'])
+    ){
     $sql = "INSERT INTO `cadastro`(`nome`, `valor`, `qtd`, `validade`) VALUES (:nome,:valor,:qtd,:validade);";
     $prepare = conexao()->prepare($sql);
-    $prepare->bindValue(":nome", $nome );
-    $prepare->bindValue(":valor", $valor );
-    $prepare->bindValue(":qtd", $qtd);
-    $prepare->bindValue(":validade", $dt_val );
+    $prepare->bindValue(":nome", $_POST['nome'] );
+    $prepare->bindValue(":valor", $_POST['valor'] );
+    $prepare->bindValue(":qtd", $_POST['qtd']);
+    $prepare->bindValue(":validade", $_POST['validade']);
     $prepare->execute();
 
     $sqlh = "INSERT INTO `historico`(`nome`, `valor`, `qtd`, `validade`) VALUES (:nome,:valor,:qtd,:validade);";
@@ -19,6 +27,7 @@ function cadastro($nome, $valor, $qtd, $dt_val){
     $preparo->bindValue(":qtd", $qtd);
     $preparo->bindValue(":validade", $dt_val );
     $preparo->execute();
+}
 }
 
 function ver(){
@@ -64,30 +73,6 @@ function ver(){
         $prepare->bindValue(":id", $id);
         $prepare->execute();
     }
-    
-    function cadastrou($email, $senha){
-    $sql = "INSERT INTO `login`(`email`, `senha`) VALUES (:email,:senha);";
-    $prepare = conexao()->prepare($sql);
-    $prepare->bindValue(":email", $email );
-    $prepare->bindValue(":senha", $senha );
-    $prepare->execute();
-    
-    }
-    
-    function login(){
-    $sql = "SELECT `idlogin`, `email`, `senha` FROM `login` WHERE `email`=:email and `senha`=:senha;";
-    $prepare_usuario = conexao()->prepare($sql);
-    $prepare_usuario->bindValue(":email", $_POST['email']);
-    $prepare_usuario->bindValue(":senha", $_POST['senha']);
-    $prepare_usuario->execute();
-
-    if($prepare_usuario->rowCount() == 1){
-        header("Location: cadastro_produtos.php");
-        return;
-    }
-
-    return "Login ou senha inválidos!";
-}
 
 function editar($nome, $valor, $qtd, $validade, $id) {
     $sql = "UPDATE `cadastro` SET `nome`=:nome,`valor`=:valor,`qtd`=:qtd,`validade`=:validade WHERE `idcadastro`=:id;";

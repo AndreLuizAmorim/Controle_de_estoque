@@ -1,6 +1,7 @@
-<?php include_once ("template/global.php"); ?>
-<?php include_once ("template/header.php"); ?>
-    <?php  
+<?php 
+        include_once ("template/header.php"); 
+        include_once ("php/global.php");
+        include_once ("php/produto.php");   
         if(isset($_POST["nome"]) and isset($_POST["valor"]) and isset($_POST["qtd"]) and isset($_POST["validade"]) and isset($_POST["fodase"])){
                
             editar($_POST["nome"], $_POST["valor"], $_POST["qtd"], $_POST["validade"], $_POST["fodase"]);

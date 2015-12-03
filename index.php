@@ -1,23 +1,13 @@
-<?php include_once ("template/global.php"); ?>
-<?php
-    if(
-        isset($_POST['email']) and
-        isset($_POST['senha'])
-    ){
-        $erro = login();
+<?php 
+    include_once ("template/header.php"); 
+    include_once ("php/global.php");
+    include_once ("php/usuario.php");
+    
+    if(estalogado()){
+        header("Location: cadastro_produtos.php");
     }
+    login();
 ?>
-
-<?php include_once ("template/header.php"); ?>
-
-<?php if(isset($erro)){ ?>
-
-    <div data-alert class="alert-box alert">
-        <?= $erro ?>
-        <a href="#" class="close">&times;</a>
-    </div>
-
-<?php } ?>
 
 <form method="post">
     <div class="row login">

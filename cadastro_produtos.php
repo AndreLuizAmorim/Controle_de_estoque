@@ -1,17 +1,16 @@
-<?php include_once ("template/global.php"); ?>
-<?php
-    if(
-        isset($_POST['nome']) and
-        isset($_POST['valor']) and
-        isset($_POST['qtd']) and
-        isset($_POST['validade'])
-    ){
-        cadastro($_POST['nome'], $_POST['valor'], $_POST['qtd'], $_POST['validade']);
+<?php 
+    include_once ("template/header.php");
+    include_once ("php/global.php");
+    include_once ("php/produto.php");
+    include_once ("php/usuario.php");
+    if(!estalogado()){
+        header("Location: /index.php");
     }
+    cadastro();
+    
 ?>
 
-<?php include_once ("template/header.php"); ?>
-
+<a href="sair.php">SAIR</a>
 <form method="post">
     <div class="row login">
         <div class="large-12 small-12 medium-12 columns">

@@ -1,17 +1,22 @@
-<?php include_once ("template/global.php"); ?>
-<?php
-    if(
-        isset($_POST['email']) and
-        isset($_POST['senha'])
-    ){
-        cadastrou($_POST['email'], $_POST['senha'] );
+<?php 
+    include_once ("template/header.php");
+    include_once ("php/global.php"); 
+    include_once ("php/usuario.php"); 
+    if(estalogado()){
+        header("Location: /index.php");
     }
+        cadastrou( );
+    
 ?>
-
-<?php include_once ("template/header.php"); ?>
 
 <form method="post">
     <div class="row login">
+        <div class="large-12 small-12 medium-12 columns">
+            <label>
+                Nome:
+                <input type="text" name="nome" />
+            </label>
+        </div>
         <div class="large-12 small-12 medium-12 columns">
             <label>
                 Email:
