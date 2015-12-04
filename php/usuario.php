@@ -44,7 +44,7 @@ function cadastrou(){
                 $_SESSION['login'] = $prepare_usuario->fetch(PDO::FETCH_ASSOC);
                 header("Location: /cadastro_produtos.php");
             }  else {
-                $erro = "FUDEU DEU MERDA!";
+                return "FUDEU DEU MERDA!";
             }
         }
     }

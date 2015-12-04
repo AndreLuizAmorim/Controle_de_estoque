@@ -6,7 +6,22 @@
             $id = $_POST["id"];
             delete($id);
     }
-    
-    ver();
 ?>
+<form method="post">
+<input type="text" name="nome" placeholder="nome" />
+<input type="tel" name="valor" placeholder="valor" />
+<input type="submit" value="Procurar" /></form>
+<table border="1">
+    <?php
+    if(
+    !isset($_POST['nome']) and
+    !isset($_POST['valor'])
+    ){
+        ver();
+    }  else {
+        procurar();
+    }
+    ?>
+</table>
+
 <?php include_once ("template/footer.php"); ?>
